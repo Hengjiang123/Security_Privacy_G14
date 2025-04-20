@@ -1,7 +1,10 @@
-<!-- Modify templates/dashboard.html -->
+<!-- templates/dashboard.html -->
 {% extends "base.html" %}
 {% block content %}
-<h2>Welcome, {{ user.username }}!</h2>
+<h2>Welcome, {{ user.username|safe }}!</h2>   {# 存储型 XSS 漏洞 #}
 <p>This is your secure banking dashboard.</p>
-<p><a href="{{ url_for('transactions') }}">View Transactions</a> | <a href="{{ url_for('account_details', account_id=user.id) }}">Account Details</a></p>
+<p>
+  <a href="{{ url_for('transactions') }}">View Transactions</a> |
+  <a href="{{ url_for('account_details', account_id=user.id) }}">Account Details</a>
+</p>
 {% endblock %}
