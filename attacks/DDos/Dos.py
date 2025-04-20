@@ -4,7 +4,7 @@ import time
 
 # -------- CONFIGURATION --------
 # TARGET_URL = "http://flask-env.eba-7mjjpfcw.eu-west-2.elasticbeanstalk.com/login" # make sure to change this to current target URL *****
-TARGET_URL = "https://3dd1-140-228-36-171.ngrok-free.app/login" # ngrok URL ***** need to be updated every time!*****
+TARGET_URL = "https://e200-140-228-36-171.ngrok-free.app/login" # ngrok URL ***** need to be updated every time!*****
 NUM_THREADS = 100  # Number of threads to simulate concurrent requests
 
 HEADERS = {
