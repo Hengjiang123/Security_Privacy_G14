@@ -3,7 +3,7 @@ import requests
 import time
 
 # -------- CONFIGURATION --------
-TARGET_URL = "https://ccdb-31-205-106-14.ngrok-free.app/login"
+TARGET_URL = "https://ccdb-31-205-106-14.ngrok-free.app/login" # make sure to change this to current target URL *****
 NUM_THREADS = 20  # Number of threads to simulate concurrent requests
 
 HEADERS = {
