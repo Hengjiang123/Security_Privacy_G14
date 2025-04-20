@@ -1,0 +1,40 @@
+<!-- templates/phishing_login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Bank Group 14</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Digital Bank - Group 14</h1>
+      <nav>
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+      </nav>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <section class="content">
+      <h2>Login to Your Account</h2>
+      <form method="POST" action="{{ url_for('fake_login') }}">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#">Register here</a>.</p>
+    </section>
+  </div>
+</body>
+</html>

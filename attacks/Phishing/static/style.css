@@ -1,0 +1,114 @@
+
+/* static/style.css */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+    background: linear-gradient(to bottom right, #2c3e50, #bdc3c7); 
+    background-attachment: fixed;
+  
+    color: #060505; 
+  }
+  
+  
+  .container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    color: #2a2a2a;
+  }
+  
+  
+  header h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #2a4365;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    color: #0d0c0c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+    color: #ffcc00;
+  }
+  
+  .flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    color: #d04545;
+  }
+  
+  .content {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #2c3e50;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  table th {
+    background-color: #edf2f7;
+    color: #2d3748;
+  }
+  
+  body::before {
+    content: \"\";
+    background: url('https://www.transparenttextures.com/patterns/black-linen.png'); /* 低调灰纹理 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.07;
+    z-index: -1;
+  }
+  
