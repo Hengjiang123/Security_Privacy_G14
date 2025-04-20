@@ -3,7 +3,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # === 目标网站 ===
 TARGETS = {
-    "Google": "http://www.google.com",
+    "Digital-bank":"http://flask-env.eba-7mjjpfcw.eu-west-2.elasticbeanstalk.com",
+    # "Google": "http://www.google.com",
     # "Baidu": "http://www.baidu.com",
     # "Ngrok": "https://f4f4-140-228-36-171.ngrok-free.app/login"
 }
@@ -46,8 +47,8 @@ def test_proxy(proxy):
 # === 主程序 ===
 if __name__ == "__main__":
     proxy_list = load_proxies(PROXY_FILE)
-    print(f"🔍 Loaded {len(proxy_list)} proxies.")
-    print(f"🚀 Testing with {MAX_THREADS} threads...\n")
+    print(f"Loaded {len(proxy_list)} proxies.")
+    print(f"Testing with {MAX_THREADS} threads...\n")
 
     working_proxies = []
 
@@ -61,14 +62,14 @@ if __name__ == "__main__":
                 if result:
                     working_proxies.append(result)
             except Exception as e:
-                print(f"[{i}] ⚠️ Unexpected error for {proxy}: {e}")
+                print(f"[{i}] Unexpected error for {proxy}: {e}")
 
     # 保存可用代理
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         for proxy in working_proxies:
             f.write(proxy + "\n")
 
-    print("\n📊 Summary:")
+    print("\nSummary:")
     print(f"   Total proxies tested: {len(proxy_list)}")
-    print(f"   ✅ Valid proxies     : {len(working_proxies)}")
-    print(f"   💾 Saved to          : {OUTPUT_FILE}")
+    print(f"   Valid proxies     : {len(working_proxies)}")
+    print(f"   Saved to          : {OUTPUT_FILE}")
