@@ -1,10 +1,23 @@
-<!-- templates/dashboard.html -->
 {% extends "base.html" %}
 {% block content %}
-<h2>Welcome, {{ user.username|safe }}!</h2>   {# 存储型 XSS 漏洞 #}
+<h2>Welcome, {{ user.username }}!</h2>
 <p>This is your secure banking dashboard.</p>
+
+{% if session.get('_flashes') %}
+  {% for category, message in session.get('_flashes') %}
+    {% if 'ATTACK SUCCESSFUL' in message %}
+      <div style="background-color: #f44336; color: white; padding: 15px; margin: 15px 0; border-radius: 5px;">
+        <h3 style="margin-top: 0;">SECURITY BREACH DETECTED!</h3>
+        <p>{{ message }}</p>
+        <p>This demonstrates how an instruction authentication attack can trick users into performing unintended actions.</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 <p>
   <a href="{{ url_for('transactions') }}">View Transactions</a> |
-  <a href="{{ url_for('account_details', account_id=user.id) }}">Account Details</a>
+  <a href="{{ url_for('account_details', account_id=user.id) }}">Account Details</a> |
+  <a href="{{ url_for('transfer') }}">Transfer Funds</a>
 </p>
 {% endblock %}

